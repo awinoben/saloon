@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
+use App\Salon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -63,10 +65,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+      /**  return User::create([
+           * 'name' => $data['name'],
+            *'email' => $data['email'],
+           * 'password' => Hash::make($data['password']),
+        ]);
+        */
+
+        $user = User::create([
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        $user
+            ->roles()
+            ->attach(Role::where('name', 'employer')->first());
+        $user->save();
+
+        $userId = $user->id;
+
+        Salon::create([
+            'name' => $data['salon'],
+            'paybill_no' => $data['paybill'],
+            'phone' => $data['phone'],
+            'user_id' => $userId
+        ]);
+
+        return $user;
     }
 }
