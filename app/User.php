@@ -42,6 +42,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function salon()
+    {
+
+        return $this->hasMany(Salon::class);
+     }
+
     /**
      * @param string|array $roles
      */

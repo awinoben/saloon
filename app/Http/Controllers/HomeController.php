@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Salon;
 
 class HomeController extends Controller
 {
@@ -23,7 +23,11 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+
         $request->user()->authorizeRoles(['employer', 'staff', 'client']);
-        return view('home');
+
+        $userId = auth()->user()->id;
+        $salons = Salon::where('user_id',$userId)->get()->first();
+        return view('home')->with('salons',$salons);
     }
 }
