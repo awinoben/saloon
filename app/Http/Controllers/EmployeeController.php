@@ -95,7 +95,10 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return view('employees.edit',compact('employee'));
+        $userId = auth()->user()->id;
+        $salons = Salon::where('user_id',$userId)->get()->first();
+        return view('employees.edit',compact('employee'))
+            ->with('salons',$salons);
     }
 
     /**
@@ -110,7 +113,6 @@ class EmployeeController extends Controller
         $request->validate([
             'name' => 'required',
             'phone_number' => 'required',
-            'password' => 'required',
         ]);
 
         $employee->update($request->all());

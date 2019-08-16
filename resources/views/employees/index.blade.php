@@ -15,12 +15,11 @@
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
-                                @if ($message= ('success'))
-                                    <div class="alert alert-success">
-                                        <p>{{ $message }}</p>
-                                    </div>
-                                @endif
-
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-success">
+                                    <p>{{ $message }}</p>
+                                </div>
+                            @endif
                                 <table class="table table-bordered">
                                     <tr>
                                         <th><i class="fa fa-user"></i></th>
@@ -30,7 +29,7 @@
                                     </tr>
                                     @foreach ($employees as $employee)
                                         <tr>
-                                            <td>{{ $employee->id }}</td>
+                                            <td>{{ ++$i}}</td>
                                             <td>{{ $employee->name }}</td>
                                             <td>{{ $employee->phone_number }}</td>
                                             <td>

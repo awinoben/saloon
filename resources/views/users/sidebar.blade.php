@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Saloon <sup>car</sup></div>
+        <div class="sidebar-brand-text mx-3">{{ $salons->name }} <sup></sup></div>
     </a>
 
     <!-- Divider -->
@@ -23,7 +23,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        User->Owner
+        User->Employer
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -35,6 +35,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Employee List:</h6>
+                <a class="collapse-item" href="{{ route('employees.create') }}">Add New</a>
                 <a class="collapse-item" href="{{ route('employees.index') }}">View</a>
             </div>
         </div>
