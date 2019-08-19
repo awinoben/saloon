@@ -65,8 +65,8 @@
         <div id="collapseServices" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Services:</h6>
-                <a class="collapse-item" href="#">Add New</a>
-                <a class="collapse-item" href="#">Services List</a>
+                <a class="collapse-item" href="{{ route('services.create') }}">Add New</a>
+                <a class="collapse-item" href="{{ route('services.index') }}">Services List</a>
             </div>
         </div>
     </li>
